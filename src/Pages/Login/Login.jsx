@@ -1,11 +1,40 @@
+import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../provides/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
+
+
+
 
 const Login = () => {
+
+    const {login}=useContext(AuthContext)
+
+    const handleLogin=e=>{
+
+        const email = e.target.email.value
+        const password = e.target.password
+
+        login(email,password)
+        .then(() => {
+
+            toast.success('Logged In Successfully')
+        
+            setTimeout(()=>{
+                navigate("/")
+            },2000)
+        
+          })
+          .catch(()=>{
+            toast.error("Incorrect username or password")
+          })
+    }
     return (
         <div>
 
             <div className="mt-10">
+                <Toaster></Toaster>
                 <div className="shadow-2xl shadow-blue-700 w-11/12 mx-auto p-5 sm:p-10 sm:w-7/12 sm:mx-auto " >
 
                     <div className="flex justify-center items-center">
@@ -17,7 +46,7 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -36,7 +65,7 @@ const Login = () => {
                     </form>
 
                     <div className="mt-5">
-                    <button className="w-full bg-gray-200 py-2 px-1 rounded-xl text-center flex justify-center items-center gap-5">
+                    <button className="w-full bg-gray-200 py-3 px-1 rounded-xl text-center flex justify-center items-center gap-5">
                         <span className="text-blue-700" ><FaGoogle /></span>
                         <span className="font-bold">Sign In With Google</span>
                     </button>

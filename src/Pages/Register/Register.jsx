@@ -1,16 +1,78 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provides/AuthProvider";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+
+
+
+const image_key = "882b09b883bdb9615d409ad402b4f806"
+const api = `https://api.imgbb.com/1/upload?key=${image_key}`
 
 
 const Register = () => {
+
+    const {createUser,updatePhotoAndName,logout}=useContext(AuthContext)
+    const navigate = useNavigate()
+
+    const handleRegister = async(e) =>{
+        e.preventDefault()
+
+
+        const email = e.target.email.value
+        const password = e.target.password.value 
+        const name = e.target.name.value
+        const imageFile = {image:e.target.image.files[0]}
+
+
+       const res= await axios.post(api,imageFile,{
+        headers:{
+            "Content-Type":"multipart/form-data"
+        }
+    })
+
+     if(res.data.success){
+
+          createUser(email,password)
+        .then(()=>{
+           updatePhotoAndName(name,res.data.data.display_url)
+           .then(()=>{
+            logout()
+            toast.success("Registered Successfully")
+            setTimeout(()=>{
+
+                navigate("/")
+
+            },2000)
+
+           
+           })
+            
+        })
+
+     }else{
+        toast.error("Register Unsuccessful")
+     }
+
+
+
+
+
+    }
+
+
+
+
     return (
         <div>
+            <Toaster></Toaster>
            <div  className="mt-10">
            <div className="w-11/12 mx-auto p-5 sm:p-10 sm:w-7/12 sm:mx-auto  shadow-2xl shadow-blue-700">
                 <div className="text-center">
                     <h1 className="text-3xl font-bold">Sign Up</h1>
                 </div>
 
-                <form>
+                <form onSubmit={handleRegister}>
                 <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Your Name</span>
@@ -21,7 +83,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Upload Photo</span>
                             </label>
-                            <input type="file" className="file-input file-input-bordered w-full" />
+                            <input type="file" name="image" className="file-input file-input-bordered w-full" />
                         </div>
                         <div className="form-control">
                             <label className="label">

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provides/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -9,12 +9,16 @@ import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
 
+
+    const navigate = useNavigate()
+
     const {login}=useContext(AuthContext)
 
     const handleLogin=e=>{
+        e.preventDefault()
 
         const email = e.target.email.value
-        const password = e.target.password
+        const password = e.target.password.value
 
         login(email,password)
         .then(() => {
@@ -22,7 +26,7 @@ const Login = () => {
             toast.success('Logged In Successfully')
         
             setTimeout(()=>{
-                navigate("/")
+                navigate("/landingPage")
             },2000)
         
           })

@@ -4,6 +4,7 @@ import {
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import LandingPage from "../Pages/LandingPage/LandingPage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,6 @@ export const router = createBrowserRouter([
     },
     {
       path:"/landingPage",
-      element:<LandingPage></LandingPage>
+      element:<PrivateRoute><LandingPage></LandingPage></PrivateRoute>
     }
   ]);

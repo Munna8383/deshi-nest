@@ -12,6 +12,14 @@ const Navbar = () => {
 
    }
 
+   const handleRefresh=()=>{
+
+
+    window.location.reload();
+
+
+   }
+
 
 
 
@@ -20,7 +28,7 @@ const Navbar = () => {
         <div className="navbar bg-base-300 px-5">
   <div className="flex-1">
      <div>
-     <div className="flex justify-center items-center">
+     <div onClick={handleRefresh} className="flex justify-center items-center cursor-pointer">
                         <div>
                             <img className="w-12 h-8" src="../../../public/—Pngtree—letter d logo_6928616.png" alt=""  />
                         </div>
@@ -33,7 +41,7 @@ const Navbar = () => {
   <div className="flex-none">
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
+        <div className="w-14 rounded-full">
 
             {
                 user&&  user&&<img

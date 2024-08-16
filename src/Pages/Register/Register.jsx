@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provides/AuthProvider";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import {FaEye,FaEyeSlash} from "react-icons/fa";
 
 
 
@@ -14,6 +15,7 @@ const Register = () => {
 
     const {createUser,updatePhotoAndName,logout}=useContext(AuthContext)
     const navigate = useNavigate()
+     const [showPassword,setShowPassword]=useState(false)
 
     const handleRegister = async(e) =>{
         e.preventDefault()
@@ -91,11 +93,18 @@ const Register = () => {
                             </label>
                             <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
-                        <div className="form-control">
+                        <div className="form-control relative">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                            <input type={showPassword? "text":"password"} name="password" placeholder="password" className="input input-bordered" required />
+                            
+                        <span className="absolute right-12 bottom-4" onClick={()=>setShowPassword(!showPassword)}>
+                            {
+                                showPassword? <FaEyeSlash></FaEyeSlash>:<FaEye></FaEye>
+                            }
+                        </span>
+
                         </div>
                         <div className="form-control mt-6">
                         <button type="submit" className="btn btn-info">Register</button>

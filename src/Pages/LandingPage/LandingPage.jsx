@@ -69,9 +69,8 @@ const LandingPage = () => {
     }
 
 
-    const handleSort=()=>{
+    const handleReset=()=>{
 
-        setDate("date")
         window.location.reload();
 
 
@@ -130,6 +129,14 @@ const LandingPage = () => {
                 
                     </div>
                     <div>
+                    <select onChange={(e)=>setDate(e.target.value)}  name="select" className="select select-bordered w-full">
+                            <option disabled selected>Sort by the date</option>
+                            <option>Newest-Product</option>
+                            <option>Oldest-Product</option>
+                        </select>
+                
+                    </div>
+                    <div>
                     <select onChange={(e)=>setBrand(e.target.value)}  name="select" className="select select-bordered w-full">
                             <option disabled selected>Sort by the Brand</option>
                             <option>Aroong</option>
@@ -140,7 +147,7 @@ const LandingPage = () => {
                  </div>
 
                  <div className="flex justify-center">
-                    <button onClick={handleSort} className="btn btn-outline">Reset</button>
+                    <button onClick={handleReset} className="btn btn-outline">Reset</button>
                  </div>
                     <div>
                         <label className="input input-bordered flex items-center gap-2">
@@ -182,6 +189,7 @@ const LandingPage = () => {
                                     <h1 className="text-base font-semibold">Rating: </h1>
                                     <span><ReactStars value={item?.ratings} /></span>
                                 </div>
+                                <h1 className="text-base font-semibold">Added Date: <span>{item?.productCreationDate}</span></h1>
 
                             </div>
                         </div>)

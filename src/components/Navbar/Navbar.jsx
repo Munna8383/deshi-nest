@@ -39,31 +39,15 @@ const Navbar = () => {
      </div>
   </div>
   <div className="flex-none">
-    <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-14 rounded-full">
-
-            {
-                user&&  user&&<img
-                alt="Tailwind CSS Navbar component"
-                src={user?.photoURL} />
-            }
-            {
-                !user&& <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-            }
-         
-        </div>
-      </div>
-      {
-        user&&    <ul
-        tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-center divide-y-2">
-        <li className="py-2">{user?.displayName}</li>
-        <li onClick={handleLogout} className="py-2 cursor-pointer">Logout</li>
-      </ul>
-      }
+    <div className="flex items-center gap-5">
+    <div className="avatar">
+  <div className="w-12 rounded-full">
+    <img src={user?.photoURL} />
+  </div>
+</div>
+<div>
+  <button className="btn btn-info" onClick={handleLogout}>Logout</button>
+</div>
     </div>
   </div>
 </div>

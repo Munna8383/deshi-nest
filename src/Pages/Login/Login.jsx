@@ -12,7 +12,31 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const {login}=useContext(AuthContext)
+    const {login,googleLogin}=useContext(AuthContext)
+
+
+
+    const handleGoogle=()=>{
+
+        googleLogin()
+        .then(()=>{
+
+        
+            toast.success('Logged In Successfully')
+        
+            setTimeout(()=>{
+                navigate("/landingPage")
+            },2000)
+
+        }) .catch(()=>{
+            toast.error("Login Unsuccessful")
+          })
+
+
+
+
+
+    }
 
     const handleLogin=e=>{
         e.preventDefault()
@@ -69,7 +93,7 @@ const Login = () => {
                     </form>
 
                     <div className="mt-5">
-                    <button className="w-full bg-gray-200 py-3 px-1 rounded-xl text-center flex justify-center items-center gap-5">
+                    <button onClick={handleGoogle} className="w-full bg-gray-200 py-3 px-1 rounded-xl text-center flex justify-center items-center gap-5">
                         <span className="text-blue-700" ><FaGoogle /></span>
                         <span className="font-bold">Sign In With Google</span>
                     </button>

@@ -11,6 +11,7 @@ const LandingPage = () => {
     const [category, setCategory] = useState("")
     const [range,setRange] = useState("")
     const [priceLimit,setPriceLimit]=useState("")
+    const [date,setDate]=useState("")
 
     const [products, setProducts] = useState([])
     const [count, setCount] = useState(null)
@@ -40,7 +41,7 @@ const LandingPage = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/products?page=${currentPage}&size=${itemPerPage}&search=${search}&brand=${brand}&category=${category}&part=${range}&priceLimit=${priceLimit}`)
+        axios.get(`http://localhost:5000/products?page=${currentPage}&size=${itemPerPage}&search=${search}&brand=${brand}&category=${category}&part=${range}&priceLimit=${priceLimit}&date=${date}`)
             .then(res => {
                 setProducts(res.data)
                 
@@ -48,7 +49,7 @@ const LandingPage = () => {
 
 
 
-    }, [currentPage, itemPerPage, search,brand,category,range,priceLimit])
+    }, [currentPage, itemPerPage, search,brand,category,range,priceLimit,date])
 
 
     const handlePrevious = () => {
@@ -70,18 +71,8 @@ const LandingPage = () => {
 
     const handleSort=()=>{
 
-        [...products].sort((a, b) => {
-            const [dayA, monthA, yearA] = a.productCreationDate.split('-');
-            const [dayB, monthB, yearB] = b.productCreationDate.split('-');
-          
-            const dateA = new Date(`${yearA}-${monthA}-${dayA}`);
-            const dateB = new Date(`${yearB}-${monthB}-${dayB}`);
-          
-            return dateB - dateA; // Sort by descending order (newest first)
-          });
-
-
-
+        setDate("date")
+        window.location.reload();
 
 
     }
@@ -149,7 +140,7 @@ const LandingPage = () => {
                  </div>
 
                  <div className="flex justify-center">
-                    <button onClick={handleSort} className="btn btn-outline">Sort product to the newest date</button>
+                    <button onClick={handleSort} className="btn btn-outline">Reset</button>
                  </div>
                     <div>
                         <label className="input input-bordered flex items-center gap-2">

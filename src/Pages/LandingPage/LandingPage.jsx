@@ -30,7 +30,7 @@ const LandingPage = () => {
 
     useEffect(() => {
 
-        axios.get("http://localhost:5000/productCount")
+        axios.get("https://deshi-nest-server.vercel.app/productCount")
             .then(res => {
                 setCount(res.data.count)
             })
@@ -41,7 +41,7 @@ const LandingPage = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/products?page=${currentPage}&size=${itemPerPage}&search=${search}&brand=${brand}&category=${category}&part=${range}&priceLimit=${priceLimit}&date=${date}`)
+        axios.get(`https://deshi-nest-server.vercel.app/products?page=${currentPage}&size=${itemPerPage}&search=${search}&brand=${brand}&category=${category}&part=${range}&priceLimit=${priceLimit}&date=${date}`)
             .then(res => {
                 setProducts(res.data)
                 

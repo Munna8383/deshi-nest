@@ -30,7 +30,7 @@ const Navbar = () => {
      <div>
      <div onClick={handleRefresh} className="flex justify-center items-center cursor-pointer">
                         <div>
-                            <img className="w-12 h-8" src="../../../public/—Pngtree—letter d logo_6928616.png" alt=""  />
+                            <img className="w-12 h-8" src="https://i.ibb.co/CJdxjLL/Pngtree-letter-d-logo-6928616.png" alt=""  />
                         </div>
                         <div>
                             <h1 className="text-2xl font-extrabold">Deshi<span className="text-blue-700">Nest</span></h1>

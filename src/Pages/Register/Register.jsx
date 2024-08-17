@@ -4,6 +4,7 @@ import { AuthContext } from "../../provides/AuthProvider";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import {FaEye,FaEyeSlash} from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -68,6 +69,9 @@ const Register = () => {
     return (
         <div>
             <Toaster></Toaster>
+            <Helmet>
+                    <title>Register || Deshi Nest</title>
+                </Helmet>
            <div  className="mt-10">
            <div className="w-11/12 mx-auto p-5 sm:p-10 sm:w-7/12 sm:mx-auto  shadow-2xl shadow-blue-700">
                 <div className="text-center">

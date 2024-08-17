@@ -3,6 +3,7 @@ import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provides/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -62,12 +63,15 @@ const Login = () => {
         <div>
 
             <div className="mt-10">
+                <Helmet>
+                    <title>Login || Deshi Nest</title>
+                </Helmet>
                 <Toaster></Toaster>
                 <div className="shadow-2xl shadow-blue-700 w-11/12 mx-auto p-5 sm:p-10 sm:w-7/12 sm:mx-auto " >
 
                     <div className="flex justify-center items-center">
                         <div>
-                            <img className="w-16 h-12" src="../../../public/—Pngtree—letter d logo_6928616.png" alt=""  />
+                            <img className="w-16 h-12" src="https://i.ibb.co/CJdxjLL/Pngtree-letter-d-logo-6928616.png" alt=""  />
                         </div>
                         <div>
                             <h1 className="text-3xl font-extrabold">Deshi Nest</h1>
